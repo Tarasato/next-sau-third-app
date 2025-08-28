@@ -44,6 +44,7 @@ export default function Page() {
               <button className="w-full bg-slate-200 text-slate-700 font-bold py-3 px-4 rounded-xl shadow-md hover:bg-slate-300 focus:outline-none focus:ring-4 focus:ring-slate-300 transition-all duration-200">
                 รีเซ็ต
               </button>
+              <Link href="/" className="text-center">กลับสู่หน้าหลัก</Link>
             </div>
 
             {/* <!-- Result Display --> */}

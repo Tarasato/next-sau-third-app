@@ -46,7 +46,7 @@ export default function Page() {
                             <span className="block text-slate-700 font-semibold mb-2">เพศ:</span>
                             <div className="flex flex-col space-x-4">
                                 <label className="inline-flex items-center">
-                                    <input type="radio" name="gender" value="male" autoFocus className="form-radio text-indigo-600 focus:ring-indigo-500" />
+                                    <input type="radio" name="gender" value="male" className="form-radio text-indigo-600 focus:ring-indigo-500" />
                                     <span className="ml-2 text-slate-700">ชาย</span>
                                 </label>
                                 <label className="inline-flex items-center">
@@ -64,6 +64,7 @@ export default function Page() {
                             <button className="w-full bg-slate-200 text-slate-700 font-bold py-3 px-4 rounded-xl shadow-md hover:bg-slate-300 focus:outline-none focus:ring-4 focus:ring-slate-300 transition-all duration-200">
                                 ล้างข้อมูล
                             </button>
+                            <Link href="/" className="text-center">กลับสู่หน้าหลัก</Link>
                         </div>
 
                         {/* <!-- Result Display --> */}
