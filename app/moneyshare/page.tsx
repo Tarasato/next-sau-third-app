@@ -2,9 +2,23 @@
 
 import Link from "next/link"
 import Image from "next/image"
+import { useState } from "react";
+
 import moneyshare from './../images/moneyshare.png'
 
 export default function Page() {
+
+    const [totalAmount, setTotalAmount] = useState(0);
+    const [numberOfPeople, setNumberOfPeople] = useState(1);
+    const [result, setResult] = useState(0);
+
+    const handleCalClick = () => {
+        // Validate input
+        totalAmount == 0 || totalAmount < 0 ? alert("กรุณาป้อนจำนวนเงินให้มากกว่า 0") : numberOfPeople == 0 || numberOfPeople < 1 ? alert("กรุณาป้อนจำนวนคนให้มากกว่า 0") : null;
+
+        setResult(Number(totalAmount) / Number(numberOfPeople));
+    };
+
     return (
         <div className="bg-slate-100 flex items-center justify-center min-h-screen p-4">
 
@@ -28,25 +42,25 @@ export default function Page() {
                     <div className="space-y-6">
                         <div>
                             <label className="block text-slate-700 font-semibold mb-2">ป้อนจำนวนเงิน</label>
-                            <input type="number" id="totalAmount" placeholder="0.00" className="w-full px-4 py-3 rounded-xl bg-slate-100 text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all duration-200" />
+                            <input type="number" id="totalAmount" placeholder={totalAmount.toString()} min={0} value={totalAmount} onChange={(e) => setTotalAmount(Number(e.target.value))} className="w-full px-4 py-3 rounded-xl bg-slate-100 text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all duration-200" />
                         </div>
 
                         <div>
                             <label className="block text-slate-700 font-semibold mb-2">ป้อนจำนวนคน</label>
-                            <input type="number" id="numberOfPeople" placeholder="0" className="w-full px-4 py-3 rounded-xl bg-slate-100 text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all duration-200" />
+                            <input type="number" id="numberOfPeople" placeholder={numberOfPeople.toString()} min={1} value={numberOfPeople} onChange={(e) => setNumberOfPeople(Number(e.target.value))} className="w-full px-4 py-3 rounded-xl bg-slate-100 text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all duration-200" />
                         </div>
 
                         {/* <!-- ส่วนแสดงผลลัพธ์ --> */}
                         <div className="bg-indigo-50 p-4 rounded-xl text-center">
-                            <p className="text-green-700 text-2xl font-bold">หารกันคนละ 0.00 บาท</p>
+                            <p className="text-green-700 text-2xl font-bold">หารกันคนละ {result.toFixed(2)} บาท</p>
                         </div>
 
                         {/* <!-- ปุ่มการทำงาน --> */}
                         <div className="flex flex-col space-y-3">
-                            <button className="w-full bg-indigo-600 text-white font-bold py-3 px-4 rounded-xl shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-300 transition-all duration-200">
+                            <button onClick={handleCalClick} className="w-full bg-indigo-600 text-white font-bold py-3 px-4 rounded-xl shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-300 transition-all duration-200">
                                 คำนวณ
                             </button>
-                            <button className="w-full bg-slate-200 text-slate-700 font-bold py-3 px-4 rounded-xl shadow-md hover:bg-slate-300 focus:outline-none focus:ring-4 focus:ring-slate-300 transition-all duration-200">
+                            <button onClick={() => { setTotalAmount(0); setNumberOfPeople(1); setResult(0); }} className="w-full bg-slate-200 text-slate-700 font-bold py-3 px-4 rounded-xl shadow-md hover:bg-slate-300 focus:outline-none focus:ring-4 focus:ring-slate-300 transition-all duration-200">
                                 ล้างข้อมูล
                             </button>
                             <Link href="/" className="text-center">กลับสู่หน้าหลัก</Link>

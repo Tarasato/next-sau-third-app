@@ -2,10 +2,23 @@
 
 import Image from "next/image"
 import Link from "next/link"
+import { useState } from "react"
 
 import bmi from './../images/bmi.png'
 
 export default function Page() {
+
+  const [weight, setWeight] = useState(0);
+  const [height, setHeight] = useState(0);
+  const [result, setResult] = useState(0);
+
+  const handleCalculateBMI = () => {
+    weight == 0 || weight < 1 ? alert("กรุณาป้อนน้ำหนักให้มากกว่า 0") : height == 0 || height < 1 ? alert("กรุณาป้อนส่วนสูงให้มากกว่า 0") : null;
+
+    const bmiValue = weight / ((height / 100) ** 2);
+    setResult(bmiValue);
+  };
+
   return (
     <div className="bg-slate-100 flex items-center justify-center min-h-screen p-4">
 
@@ -28,20 +41,20 @@ export default function Page() {
           <div className="space-y-6">
             <div>
               <label className="block text-slate-700 font-semibold mb-2">ป้อนน้ำหนัก (กิโลกรัม)</label>
-              <input type="number" id="weightInput" placeholder="0" className="w-full px-4 py-3 rounded-xl bg-slate-100 text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all duration-200" />
+              <input type="number" id="weightInput" placeholder="0" min={1} value={weight} onChange={(e) => setWeight(Number(e.target.value))} className="w-full px-4 py-3 rounded-xl bg-slate-100 text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all duration-200" />
             </div>
 
             <div>
               <label className="block text-slate-700 font-semibold mb-2">ป้อนส่วนสูง (เซนติเมตร)</label>
-              <input type="number" id="heightInput" placeholder="0" className="w-full px-4 py-3 rounded-xl bg-slate-100 text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all duration-200" />
+              <input type="number" id="heightInput" placeholder="0" min={1} value={height} onChange={(e) => setHeight(Number(e.target.value))} className="w-full px-4 py-3 rounded-xl bg-slate-100 text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all duration-200" />
             </div>
 
             {/* <!-- Action Buttons --> */}
             <div className="flex flex-col space-y-3">
-              <button className="w-full bg-indigo-600 text-white font-bold py-3 px-4 rounded-xl shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-300 transition-all duration-200">
+              <button onClick={handleCalculateBMI} className="w-full bg-indigo-600 text-white font-bold py-3 px-4 rounded-xl shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-300 transition-all duration-200">
                 คำนวณ
               </button>
-              <button className="w-full bg-slate-200 text-slate-700 font-bold py-3 px-4 rounded-xl shadow-md hover:bg-slate-300 focus:outline-none focus:ring-4 focus:ring-slate-300 transition-all duration-200">
+              <button onClick={() => { setWeight(0); setHeight(0); setResult(0); }} className="w-full bg-slate-200 text-slate-700 font-bold py-3 px-4 rounded-xl shadow-md hover:bg-slate-300 focus:outline-none focus:ring-4 focus:ring-slate-300 transition-all duration-200">
                 รีเซ็ต
               </button>
               <Link href="/" className="text-center">กลับสู่หน้าหลัก</Link>
@@ -49,7 +62,7 @@ export default function Page() {
 
             {/* <!-- Result Display --> */}
             <div className="bg-indigo-50 p-4 rounded-xl text-center">
-              <p className=" text-[19px] font-bold">ค่า BMI ที่คำนวณได้: <span id="result" className="text-red-700">0.00</span></p>
+              <p className=" text-[19px] font-bold">ค่า BMI ที่คำนวณได้: <span id="result" className="text-red-700">{result.toFixed(2)}</span></p>
             </div>
 
           </div>
