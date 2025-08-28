@@ -11,7 +11,7 @@ export default function Page() {
     const [carPrice, setCarPrice] = useState(0);
     const [interestRate, setInterestRate] = useState(0);
     const [downPayment, setDownPayment] = useState(15);
-    const [loanTerm, setLoanTerm] = useState(12);
+    const [loanTerm, setLoanTerm] = useState(24);
     const [monthlyPayment, setMonthlyPayment] = useState(0);
 
     const handleCalClick = () => {
@@ -21,22 +21,22 @@ export default function Page() {
             return;
         }
         if (carPrice <= 0) {
-            alert("กรุณาป้อนราคารถยนต์ให้มากกว่า 0");
+            alert("กรุณาป้อนราคารถยนต์");
             return;
         }
         if (downPayment < 0) {
-            alert("กรุณาป้อนเงินดาวน์ให้มากกว่า 0");
+            alert("กรุณาป้อนเงินดาวน์");
             return;
         }
-        if (loanTerm <= 0) {
-            alert("กรุณาป้อนระยะเวลากู้เงินให้มากกว่า 0");
+        if (loanTerm < 0) {
+            alert("กรุณาเลือกระยะเวลาผ่อนชำระ");
             return;
         }
 
         // Calculate monthly payment
-        const FinanceTotal = carPrice - downPayment;
-        const allInterest = (FinanceTotal * interestRate / 100) * monthlyPayment / 12;
-        const monthly = FinanceTotal * allInterest / monthlyPayment;
+        const FinanceTotal = carPrice - (downPayment * carPrice / 100);
+        const allInterest = (FinanceTotal * (interestRate / 100)) * (12 / 12);
+        const monthly = (FinanceTotal + allInterest) / loanTerm;
 
         setMonthlyPayment(monthly);
     };
@@ -45,31 +45,31 @@ export default function Page() {
         setCarOwner("");
         setCarPrice(0);
         setInterestRate(0);
-        setDownPayment(0);
-        setLoanTerm(0);
+        setDownPayment(15);
+        setLoanTerm(24);
         setMonthlyPayment(0);
     };
 
     return (
-        <body className="bg-slate-100 flex items-center justify-center min-h-screen p-4">
+        <body className="bg-slate-100 flex items-center justify-center min-h-screen py-4">
 
             {/* <!-- Main container --> */}
             <div className="w-full max-w-3xl mx-auto flex flex-col items-center">
 
                 {/* <!-- Calculator Card --> */}
-                <div className="bg-white p-8 rounded-3xl shadow-2xl w-full mb-8">
+                <div className="bg-white px-8 py-4 rounded-3xl shadow-2xl w-full mb-4">
 
                     {/* <!-- Card Header --> */}
-                    <div className="flex flex-col items-center text-center mb-6">
+                    <div className="flex flex-col items-center text-center">
                         <Link href="/">
-                            <Image src={car} alt="Car" width={100} height={100} className="mb-4" />
+                            <Image src={car} alt="Car" width={95} height={95}/>
                         </Link>
-                        <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-800 mb-2">Car Installment Calculator</h1>
+                        <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-800 mb-1">Car Installment Calculator</h1>
                         <p className="text-lg text-slate-500 font-medium">คำนวณค่างวดรถยนต์</p>
                     </div>
 
                     {/* <!-- Input and Display Section --> */}
-                    <div className="space-y-6">
+                    <div className="space-y-4">
                         <div>
                             <label className="block text-slate-700 font-semibold mb-2">ชื่อผู้คำนวณ</label>
                             <input type="string" id="carOwner" placeholder="ชื่อ-นามสกุล" value={carOwner} onChange={(e) => setCarOwner(e.target.value)} className="w-full px-4 py-3 rounded-xl bg-slate-100 text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all duration-200" />
@@ -125,7 +125,7 @@ export default function Page() {
                                 </select>
                                 <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-slate-700">
                                     <svg className="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                        <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
                                     </svg>
                                 </div>
                             </div>

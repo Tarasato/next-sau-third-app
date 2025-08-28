@@ -45,19 +45,19 @@ export default function Page() {
             <div className="w-full max-w-3xl mx-auto flex flex-col items-center">
 
                 {/* <!-- Calculator Card --> */}
-                <div className="bg-white p-8 rounded-3xl shadow-2xl w-full mb-8">
+                <div className="bg-white p-8 rounded-3xl shadow-2xl w-full mb-4">
 
                     {/* <!-- Card Header --> */}
-                    <div className="flex flex-col items-center text-center mb-6">
+                    <div className="flex flex-col items-center text-center mb-3">
                         <Link href="/">
-                            <Image src={bmr} alt="BMR" width={100} height={100} className="mb-4" />
+                            <Image src={bmr} alt="BMR" width={100} height={100} className="mb-2" />
                         </Link>
                         <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-800 mb-2">BMR Calculator</h1>
                         <p className="text-lg text-slate-500 font-medium">คำนวณอัตราการเผาผลาญพลังงานขั้นพื้นฐาน</p>
                     </div>
 
                     {/* <!-- Input and Display Section --> */}
-                    <div className="space-y-6">
+                    <div className="space-y-[15px]">
                         <div>
                             <label className="block text-slate-700 font-semibold mb-2">น้ำหนัก (กิโลกรัม):</label>
                             <input type="number" id="bmrWeight" placeholder="0" value={weight} onChange={(e) => setWeight(Number(e.target.value))} className="w-full px-4 py-3 rounded-xl bg-slate-100 text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all duration-200" />
