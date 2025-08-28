@@ -10,7 +10,7 @@ export default function Page() {
     <div className="bg-slate-100 flex items-center justify-center min-h-screen p-4">
 
       {/* <!-- Main container --> */}
-      <div className="w-full max-w-sm mx-auto flex flex-col items-center">
+      <div className="w-full max-w-3xl mx-auto flex flex-col items-center">
 
         {/* <!-- Calculator Card --> */}
         <div className="bg-white p-8 rounded-3xl shadow-2xl w-full mb-8">
