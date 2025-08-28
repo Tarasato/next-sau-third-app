@@ -1,102 +1,76 @@
-import Image from "next/image";
+import Image from 'next/image'
+import Link from 'next/link'
+
+import calculator from './images/calculator.png'
+import moneyshare from './images/moneyshare.png'
+import bmi from './images/bmi.png'
+import bmr from './images/bmr.png'
+import car from './images/car.png'
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="bg-slate-100 flex flex-col items-center justify-center min-h-screen p-4">
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+      {/* <!-- คอนเทนเนอร์หลักของหน้าเว็บ --> */}
+      <div className="w-full max-w-6xl mx-auto py-10">
+
+        {/* <!-- ส่วนหัวของหน้าเว็บ --> */}
+        <header className="text-center mb-16">
+          {/* <!-- โลโก้และชื่อเว็บ --> */}
+          <div className="flex items-center justify-center mb-4">
+            <Image src={calculator} alt="Calculator Logo" width={60} height={60} className="mr-3" />
+          </div>
+          <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-800 mb-2">Calculator Varity</h1>
+          <p className="text-xl text-slate-500 font-medium">เครื่องคำนวณ By Tarasato</p>
+        </header>
+
+        {/* <!-- ส่วนของ Card สำหรับเครื่องคำนวณต่างๆ --> */}
+        <main>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+            {/* <!-- Card: Money Share --> */}
+            <Link href="/moneyshare" className="group block bg-white p-6 rounded-3xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300">
+              <div className="flex flex-col items-start">
+                <Image src={moneyshare} alt="Money Share" width={60} height={60} className="mr-3" />
+                <h2 className="text-2xl font-semibold text-slate-800 mb-2">Money Share</h2>
+                <p className="text-slate-500 text-sm">เครื่องคำนวณสำหรับแบ่งจ่ายเงิน</p>
+              </div>
+            </Link>
+
+            {/* <!-- Card: BMI --> */}
+            <Link href="/bmi" className="group block bg-white p-6 rounded-3xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300">
+              <div className="flex flex-col items-start">
+                <Image src={bmi} alt="BMI Calculator" width={60} height={60} className="mr-3" />
+                <h2 className="text-2xl font-semibold text-slate-800 mb-2">BMI Calculator</h2>
+                <p className="text-slate-500 text-sm">คำนวณดัชนีมวลกาย</p>
+              </div>
+            </Link>
+
+            {/* <!-- Card: BMR --> */}
+            <Link href="/bmr" className="group block bg-white p-6 rounded-3xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300">
+              <div className="flex flex-col items-start">
+                <Image src={bmr} alt="BMR Calculator" width={60} height={60} className="mr-3" />
+                <h2 className="text-2xl font-semibold text-slate-800 mb-2">BMR Calculator</h2>
+                <p className="text-slate-500 text-sm">คำนวณอัตราการเผาผลาญพลังงานขั้นพื้นฐาน</p>
+              </div>
+            </Link>
+
+            {/* <!-- Card: Car Installment --> */}
+            <Link href="/carinstallment" className="group block bg-white p-6 rounded-3xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300">
+              <div className="flex flex-col items-start">
+                <Image src={car} alt="Car Installment" width={60} height={60} className="mr-3" />
+                <h2 className="text-2xl font-semibold text-slate-800 mb-2">Car Installment</h2>
+                <p className="text-slate-500 text-sm">คำนวณค่างวดรถยนต์</p>
+              </div>
+            </Link>
+
+          </div>
+        </main>
+      </div>
+      <footer className='mt-8 text-center text-red-700'>
+        Created by Tarasato
+        <br />
+        Copyright &copy; 2025 Xato Empire
       </footer>
     </div>
   );
